@@ -15,7 +15,7 @@ public class ExampleMod implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static String MOD_ID = "shsmp";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final Item item = new Item(new Item.Settings().group(ItemGroup.MISC));
+	public static final Item item = new NecronomiconItem(new Item.Settings().group(ItemGroup.MISC));
 
 	@Override
 	public void onInitialize() {
@@ -24,6 +24,6 @@ public class ExampleMod implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
-		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "ee"), item);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "necronomicon"), item);
 	}
 }
