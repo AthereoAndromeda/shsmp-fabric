@@ -1,9 +1,12 @@
-# Fabric Example Mod
+# SHSMP Fabric
+This is a Fabric version of the SHSMP plugin
 
-## Setup
+Semi-Hardcore SMP
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+# Building From Source
+Run Gradle Build
+```
+./gradlew build
+```
 
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Navigate to `./build/libs/` to find the mod
