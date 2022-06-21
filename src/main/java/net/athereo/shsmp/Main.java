@@ -1,8 +1,8 @@
-package net.fabricmc.example;
+package net.athereo.shsmp;
 
+import net.athereo.shsmp.event.PlayerDeathCallback;
+import net.athereo.shsmp.item.NecronomiconItem;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.example.event.PlayerDeathCallback;
-import net.fabricmc.example.item.NecronomiconItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.text.Text;
@@ -13,7 +13,7 @@ import net.minecraft.world.GameMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExampleMod implements ModInitializer {
+public class Main implements ModInitializer {
 	public static final String MOD_ID = "shsmp";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final Item item = new NecronomiconItem(new Item.Settings().group(ItemGroup.MISC));

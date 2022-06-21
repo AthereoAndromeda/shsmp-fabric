@@ -3,7 +3,7 @@
   "id": "shsmp",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "SHSMP-Fabric",
   "description": "Semi-Hardcore SMP",
   "authors": [
     "Athereo"
@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.athereo.shsmp.Main"
     ]
   },
   "mixins": [

@@ -1,6 +1,6 @@
-package net.fabricmc.example.mixin;
+package net.athereo.shsmp.mixin;
 
-import net.fabricmc.example.event.PlayerDeathCallback;
+import net.athereo.shsmp.event.PlayerDeathCallback;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
