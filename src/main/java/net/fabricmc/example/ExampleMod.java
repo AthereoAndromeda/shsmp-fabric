@@ -2,6 +2,7 @@ package net.fabricmc.example;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.example.event.PlayerDeathCallback;
+import net.fabricmc.example.item.NecronomiconItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.stat.Stats;
