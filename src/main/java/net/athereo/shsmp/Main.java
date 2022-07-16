@@ -1,6 +1,7 @@
 package net.athereo.shsmp;
 
 import net.athereo.shsmp.event.PlayerDeathCallback;
+import net.athereo.shsmp.event.PlayerJoinCallback;
 import net.athereo.shsmp.item.NecronomiconItem;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
@@ -33,6 +34,10 @@ public class Main implements ModInitializer {
 
 			player.sendMessage(Text.literal("§4§lSigh. Better luck next time."));
 			player.changeGameMode(GameMode.SPECTATOR);
+		});
+
+		PlayerJoinCallback.EVENT.register((player, server) -> {
+			LOGGER.info(player.getEntityName() + " Joined le server");
 		});
 
 		LOGGER.info("SHSMP Finished Initializing");
