@@ -24,17 +24,17 @@ public class Main implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Initializing SHSMP-Fabric...");
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "necronomicon"), item);
 
 		PlayerDeathCallback.EVENT.register((player, source) -> {
-			// LOGGER.info("Event registrerar");
 			LOGGER.info(player.getEntityName());
 			LOGGER.info(source.getName());
 
-			// TextColor.
 			player.sendMessage(Text.literal("§4§lSigh. Better luck next time."));
 			player.changeGameMode(GameMode.SPECTATOR);
 		});
+
+		LOGGER.info("SHSMP Finished Initializing");
 	}
 }

@@ -1,6 +1,5 @@
 package net.athereo.shsmp.event;
 
-import net.athereo.shsmp.Main;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.damage.DamageSource;
@@ -10,7 +9,6 @@ public interface PlayerDeathCallback {
     Event<PlayerDeathCallback> EVENT = EventFactory.createArrayBacked(PlayerDeathCallback.class,
             (listeners) -> (player, source) -> {
                 for (PlayerDeathCallback listener : listeners) {
-                    Main.LOGGER.info("aha");
                     listener.kill(player, source);
                 }
             });

@@ -10,7 +10,6 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class NecronomiconItem extends Item {
-
     public NecronomiconItem(Settings settings) {
         super(settings);
     }
