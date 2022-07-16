@@ -4,10 +4,14 @@ import net.athereo.shsmp.event.PlayerDeathCallback;
 import net.athereo.shsmp.event.PlayerJoinCallback;
 import net.athereo.shsmp.item.NecronomiconItem;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -24,6 +28,7 @@ public class Main implements ModInitializer {
 	public static final Scoreboard scoreboard = new Scoreboard();
 	public static Team aliveTeam = scoreboard.getTeam("alive");
 	public static Team deadTeam = scoreboard.getTeam("dead");
+	public static MinecraftServer server;
 
 	@Override
 	public void onInitialize() {
@@ -34,6 +39,30 @@ public class Main implements ModInitializer {
 		LOGGER.info("Initializing SHSMP-Fabric...");
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "necronomicon"), item);
 
+		ServerLifecycleEvents.SERVER_STARTED.register(srv -> {
+			server = srv;
+			LOGGER.info("Server");
+			initializeTeams();
+		});
+
+		PlayerDeathCallback.EVENT.register((player, source) -> {
+			player.sendMessage(Text.literal("§4§lSigh. Better luck next time."));
+			player.changeGameMode(GameMode.SPECTATOR);
+			scoreboard.addPlayerToTeam(player.getEntityName(), deadTeam);
+
+			for (String str : deadTeam.getPlayerList()) {
+				LOGGER.info(str + " in DeadTeam");
+			}
+		});
+
+		PlayerJoinCallback.EVENT.register((player, server) -> {
+			LOGGER.info(player.getEntityName() + " Joined le server");
+		});
+
+		LOGGER.info("SHSMP Finished Initializing");
+	}
+
+	private void initializeTeams() {
 		if (aliveTeam == null) {
 			aliveTeam = scoreboard.addTeam("alive");
 			LOGGER.info("Alive team created");
@@ -44,23 +73,22 @@ public class Main implements ModInitializer {
 			LOGGER.info("Dead team created");
 		}
 
-		PlayerDeathCallback.EVENT.register((player, source) -> {
-			LOGGER.info(player.getEntityName());
-			LOGGER.info(source.getName());
+		assignPlayersToTeams();
+	}
 
-			player.sendMessage(Text.literal("§4§lSigh. Better luck next time."));
-			player.changeGameMode(GameMode.SPECTATOR);
-			scoreboard.addPlayerToTeam(player.getEntityName(), deadTeam);
+	private void assignPlayersToTeams() {
+		// TODO only gets players online, not all existing
+		for (ServerPlayerEntity player : PlayerLookup.all(server)) {
+			LOGGER.info("Player: " + player.getEntityName());
+			String playerName = player.getEntityName();
 
-			for (String str : deadTeam.getPlayerList()) {
-				LOGGER.info(str);
+			if (player.isSpectator()) {
+				scoreboard.addPlayerToTeam(playerName, deadTeam);
+				scoreboard.removePlayerFromTeam(playerName, aliveTeam);
+			} else {
+				scoreboard.addPlayerToTeam(playerName, aliveTeam);
+				scoreboard.removePlayerFromTeam(playerName, deadTeam);
 			}
-		});
-
-		PlayerJoinCallback.EVENT.register((player, server) -> {
-			LOGGER.info(player.getEntityName() + " Joined le server");
-		});
-
-		LOGGER.info("SHSMP Finished Initializing");
+		}
 	}
 }
