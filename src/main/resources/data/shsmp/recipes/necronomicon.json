@@ -1,27 +1,27 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-      " # ",
-      "QWQ",
-      " N "
-  ],
-  "key": {
-      "#": {
-          "item": "minecraft:nether_star"
-      },
-      "Q": {
-          "item": "minecraft:quartz"
-      },
-      "W": {
-          "item": "minecraft:writable_book"
-      },
-      "N": {
-          "item": "minecraft:netherite_block"
-      }
-  },
-  "result": {
-      "item": "shsmp:necronomicon",
-      "count": 1
-  },
-  "group": "shsmp"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "QWQ",
+        " N "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:nether_star"
+        },
+        "Q": {
+            "item": "minecraft:quartz"
+        },
+        "W": {
+            "item": "minecraft:writable_book"
+        },
+        "N": {
+            "item": "minecraft:netherite_block"
+        }
+    },
+    "result": {
+        "item": "shsmp:necronomicon",
+        "count": 1
+    },
+    "group": "shsmp"
 }

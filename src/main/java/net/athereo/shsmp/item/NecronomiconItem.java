@@ -14,7 +14,7 @@ public class NecronomiconItem extends Item {
     public NecronomiconItem(Settings settings) {
         super(settings);
     }
-    
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         player.playSound(SoundEvents.AMBIENT_CAVE, 1.0F, 1.0F);

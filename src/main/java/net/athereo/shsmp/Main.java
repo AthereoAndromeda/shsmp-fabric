@@ -26,7 +26,7 @@ public class Main implements ModInitializer {
 
 		LOGGER.info("Hello Fabric world!");
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "necronomicon"), item);
-		
+
 		PlayerDeathCallback.EVENT.register((player, source) -> {
 			// LOGGER.info("Event registrerar");
 			LOGGER.info(player.getEntityName());

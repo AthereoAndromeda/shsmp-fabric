@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayerEntity.class)
 public class PlayerDeathMixin {
     @Inject(at = @At(value = "TAIL"), method = "onDeath", cancellable = true)
-    private  void onPlayerDeath(DamageSource source, CallbackInfo info) {
+    private void onPlayerDeath(DamageSource source, CallbackInfo info) {
         ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
 
         PlayerDeathCallback.EVENT.invoker().kill(player, source);
